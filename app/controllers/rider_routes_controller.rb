@@ -1,0 +1,2 @@
+class RiderRoutesController < ApplicationController
+end

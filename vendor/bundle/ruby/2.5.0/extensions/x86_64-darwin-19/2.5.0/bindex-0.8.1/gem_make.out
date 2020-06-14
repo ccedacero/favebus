@@ -1,0 +1,15 @@
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+/Users/devtzi/.rvm/rubies/ruby-2.5.0/bin/ruby -I /Users/devtzi/.rvm/rubies/ruby-2.5.0/lib/ruby/site_ruby/2.5.0 -r ./siteconf20200614-4080-1lb4m6m.rb extconf.rb
+creating Makefile
+
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20200614-4080-clumd4/skiptrace/internal
