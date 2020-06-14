@@ -1,0 +1,13 @@
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/json-1.8.6/ext/json
+/Users/devtzi/.rvm/rubies/ruby-2.5.0/bin/ruby -I /Users/devtzi/.rvm/rubies/ruby-2.5.0/lib/ruby/site_ruby/2.5.0 -r ./siteconf20200614-25517-1jrp83j.rb extconf.rb
+creating Makefile
+
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/json-1.8.6/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/devtzi/dev/project/bus/favebus/vendor/bundle/ruby/2.5.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" install

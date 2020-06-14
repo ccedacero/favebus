@@ -5,8 +5,8 @@ class CreateBusRoutes < ActiveRecord::Migration[6.0]
       t.string :arrival_time
       t.string :bus_distance
       t.string :destination_name
+      t.string :dispace_by_stops
       t.string :last_update
-
       t.timestamps
     end
   end
