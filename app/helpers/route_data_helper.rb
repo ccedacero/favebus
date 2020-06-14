@@ -1,0 +1,2 @@
+module RouteDataHelper
+end

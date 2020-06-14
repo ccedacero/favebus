@@ -26,38 +26,43 @@ require "httparty"
 # data = response.parsed_response
 # binding.pry 
 
-def fetch_bus_status(stop_id,route)
- response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=#{stop_id}&LineRef=MTA%20NYCT_#{route}")
- data = response.parsed_response
- data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |attr|
-    # binding.pry 
-    # p "NEXT BUS ARRIVING IN:"
-    p route = attr["MonitoredVehicleJourney"]["LineRef"][9..-1]
-    p arrival_time = attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
-    p bus_distance = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
-    p destination_name = attr["MonitoredVehicleJourney"]["DestinationName"]
-    p distance_by_stops = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
-    p last_update = attr["RecordedAtTime"]    
-    # BusRoute.create(route: route, arrival_time: arrival_time, bus_distance:bus_distance, destination_name:destination_name, dispace_by_stops:distance_by_stops,last_update: last_update)    
-    # p"NEXT BUS TIME COMING UP"
-    # bus_stop = attr["MonitoredVehicleJourney"]["MonitoredCall"]["StopPointName"]
-  end 
-end
-fetch_bus_status("308209","B63")
+# def fetch_bus_status(stop_id,route)
+#  response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=#{stop_id}&LineRef=MTA%20NYCT_#{route}")
+#  data = response.parsed_response
+#  data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |attr|
+#     # binding.pry 
+#     # p "NEXT BUS ARRIVING IN:"
+#     p route = attr["MonitoredVehicleJourney"]["LineRef"][9..-1]
+#     p arrival_time = attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
+#     p bus_distance = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
+#     p destination_name = attr["MonitoredVehicleJourney"]["DestinationName"]
+#     p distance_by_stops = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
+#     p last_update = attr["RecordedAtTime"]    
+#     # BusRoute.create(route: route, arrival_time: arrival_time, bus_distance:bus_distance, destination_name:destination_name, dispace_by_stops:distance_by_stops,last_update: last_update)    
+#     # p"NEXT BUS TIME COMING UP"
+#     # bus_stop = attr["MonitoredVehicleJourney"]["MonitoredCall"]["StopPointName"]
+#   end 
+# end
+# fetch_bus_status("308209","B63")
 
 # if row["route_short_name"] == "Bx22"
 # SEEDING RIDER ROUTES INTO DATABASE
-# file = "/Users/devtzi/Downloads/bronx_bus_stop_data/routes.txt"
-# def load_csv_data(file_path)
-#   i = 0 
-#   while i < 11 do 
-#   CSV.foreach(file_path, :headers => true) do |row|
-#   BusRoute.create(route: row["route_short_name"], destination_name: row["route_long_name"])
-#   binding.pry 
-#     end
-#   end     
-#  end
+routes = "/Users/devtzi/Downloads/bronx_bus_stop_data/routes.txt"
+stops = "/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt"
+def load_csv_data(file_path)
+   
+  CSV.foreach(file_path, :headers => true) do |row|
+    i = 0
+    if i == 11 
+        break 
+    else 
+  RouteDatum.create(stop_id: row["stop_id"].to_i, stop_name: row["stop_name"])
+   i+=1 
+    end
+  end     
+ end
 
+ load_csv_data(stops)
 # csv = File.read('/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt')
 # i = 0 
 # CSV.foreach("/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt", :headers => true) do |row|
