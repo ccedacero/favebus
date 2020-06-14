@@ -1,0 +1,7 @@
+<%= form_for @rider_route do |f| %>
+<%= f.label :rider_id %>
+<%= f.collection_select(:rider_id, @riders, :id, :name) %>
+<%= f.label :bus_route_id %>
+<%= f.collection_select(:bus_route_id, @bus_routes, :id, :route) %>
+<%= f.submit "Create New Route" %>
+<% end %>

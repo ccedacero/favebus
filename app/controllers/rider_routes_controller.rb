@@ -1,14 +1,16 @@
 class RiderRoutesController < ApplicationController
     def index 
-        @rider_routes = RiderRoutes.all
+        @rider_routes = RiderRoute.all
     end
 
     def show 
-        @rider_route = Rider.find(params[:id])
+        @rider_route = RiderRoute.find(params[:id])
     end
 
     def new 
         @errors = flash[:errors]
+        @riders = Rider.all 
+        @bus_routes = BusRoute.all 
         @rider_route = RiderRoute.new
     end
 
