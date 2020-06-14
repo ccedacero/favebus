@@ -1,7 +1,13 @@
 require 'pry'
 require "faker"
-# require 'csv'
+require 'csv'
+require "httparty"
 
+# Rider.dependent_destroy_all
+# BusRoute.dependent_destroy_all
+# Rider.destroy_all 
+
+# SEEDING NAMES HERE 
 # def seed_names
 #     10.times do
 #       name = Faker::Name.unique.first_name
@@ -12,12 +18,44 @@ require "faker"
 #       User.create(username: username, name: full_name)
 #     end
 #   end
+ 
 
+#  Will need to match the bus routes created below to the stops that I load. 
+#  SEEDING BUS-ROUTES 
+# response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63")
+# data = response.parsed_response
+# binding.pry 
 
-# CSV.foreach("/Users/devtzi/Downloads/bronx_bus_stop_data/routes.txt", :headers => true) do |row|
-#     if row["route_short_name"] == "Bx22"
+def fetch_bus_status(stop_id,route)
+ response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=#{stop_id}&LineRef=MTA%20NYCT_#{route}")
+ data = response.parsed_response
+ data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |attr|
+    # binding.pry 
+    # p "NEXT BUS ARRIVING IN:"
+    p route = attr["MonitoredVehicleJourney"]["LineRef"][9..-1]
+    p arrival_time = attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
+    p bus_distance = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
+    p destination_name = attr["MonitoredVehicleJourney"]["DestinationName"]
+    p distance_by_stops = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
+    p last_update = attr["RecordedAtTime"]    
+    # BusRoute.create(route: route, arrival_time: arrival_time, bus_distance:bus_distance, destination_name:destination_name, dispace_by_stops:distance_by_stops,last_update: last_update)    
+    # p"NEXT BUS TIME COMING UP"
+    # bus_stop = attr["MonitoredVehicleJourney"]["MonitoredCall"]["StopPointName"]
+  end 
+end
+fetch_bus_status("308209","B63")
+
+# if row["route_short_name"] == "Bx22"
+# SEEDING RIDER ROUTES INTO DATABASE
+# file = "/Users/devtzi/Downloads/bronx_bus_stop_data/routes.txt"
+# def load_csv_data(file_path)
+#   i = 0 
+#   while i < 11 do 
+#   CSV.foreach(file_path, :headers => true) do |row|
 #   BusRoute.create(route: row["route_short_name"], destination_name: row["route_long_name"])
-#     end    
+#   binding.pry 
+#     end
+#   end     
 #  end
 
 # csv = File.read('/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt')
@@ -32,62 +70,6 @@ require "faker"
 
 
     # if row["stop_id"] == "103007" 
-        
-    
-# end/
-
-# # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-# #
-# # Examples:
-# #
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
-
-# require "httparty"
-# require "pry"
-# # require 'xml/to/json'
-
-# # Station_destroy_all()
-# # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-# #
-# # Examples:
-# #
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
-
-response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63")
-data = response.parsed_response
-# MTA NYCT_BX9
-# http://gtfsrt.prod.obanyc.com/vehiclePositions?key=31df2baf-01e5-4a65-80a6-82c960de5740&Operator
-# 31df2baf-01e5-4a65-80a6-82c960de5740
-# # data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"][0]["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
-
-
-data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |attr|
-    # binding.pry 
-    # p "NEXT BUS ARRIVING IN:"
-    route = attr["MonitoredVehicleJourney"]["LineRef"][9..-1]
-    arrival_time = attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
-    bus_distance = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
-    destination_name = attr["MonitoredVehicleJourney"]["DestinationName"]
-    distance_by_stops = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
-    last_update = attr["RecordedAtTime"]
-    
-    BusRoute.create(route: route, arrival_time: arrival_time, bus_distance:bus_distance, destination_name:destination_name, dispace_by_stops:distance_by_stops,last_update: last_update)
-    
-    # p"NEXT BUS TIME COMING UP"
-    # bus_stop = attr["MonitoredVehicleJourney"]["MonitoredCall"]["StopPointName"]
-end 
-
-
-
-
-
-
-
-
 # bus_info = []
     # data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |val|
     #     p "NEXT BUS ARRIVING IN:"
@@ -110,30 +92,6 @@ end
 
     # p 'done seeding'
 
-#     40.8620° N, 73.8857° W
-
-#     MTA_100567
-
-#     # k.each do |attr|
-#         # binding.pry
-#         # if attr.class == "Hash"
-#             # attr.each do |prop|
-
-# # end
-# # dependent_destroy_all
-
-# # puts data
-
-# # response = HTTParty.get("https://data.ny.gov/resource/mtafarecardhistory.json?").parsed_response
-# # stations = []
-# # response.each do |station|
-# #   station.each do |attr|
-# #     if attr[0] == "station"
-# #       Station.create(name: attr[1].strip)
-# #     end
-# #   end
-# # end
-
 # # command line create repositiry
 # # git merge name of branch here ***************
 
@@ -150,4 +108,3 @@ end
 # # from master
 # # git merge add-secnd-header
 # # from master, call merge
-
