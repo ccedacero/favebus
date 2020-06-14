@@ -1,10 +1,17 @@
 require 'pry'
-# require 'faker'
+require "faker"
 # require 'csv'
 
-# 5.times do 
-# Rider.create(name:Faker::Name.unique.name)
-# end
+# def seed_names
+#     10.times do
+#       name = Faker::Name.unique.first_name
+#       last = Faker::Name.unique.last_name
+#       full_name = name + " " + last
+#       username = name[0] + last
+#       username.downcase!
+#       User.create(username: username, name: full_name)
+#     end
+#   end
 
 
 # CSV.foreach("/Users/devtzi/Downloads/bronx_bus_stop_data/routes.txt", :headers => true) do |row|
@@ -67,7 +74,7 @@ data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].
     destination_name = attr["MonitoredVehicleJourney"]["DestinationName"]
     distance_by_stops = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
     last_update = attr["RecordedAtTime"]
-
+    
     BusRoute.create(route: route, arrival_time: arrival_time, bus_distance:bus_distance, destination_name:destination_name, dispace_by_stops:distance_by_stops,last_update: last_update)
     
     # p"NEXT BUS TIME COMING UP"
