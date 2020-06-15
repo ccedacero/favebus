@@ -6,7 +6,23 @@ require "httparty"
 # Rider.dependent_destroy_all
 # BusRoute.dependent_destroy_all
 # Rider.destroy_all 
+def find_routes(stop_name)
+    available_routes = []
+RouteDatum.all.each do |dt|
+    # binding.pry 
+    if dt["stop_name"] == stop_name
+available_routes << dt["route"]
+    end 
+end
+available_routes.uniq! 
+end
 
+# routes_available = find_routes(stop_name)
+stop_name = "WHITE PLAINS RD/E GUN HILL RD"
+stop_id = RouteDatum.find_by(stop_name:stop_name)
+id = stop_id.stop_id
+
+binding.pry 
 # SEEDING NAMES HERE 
 def seed_names
     10.times do
@@ -95,18 +111,18 @@ def load_csv_data(file_path)
 stop_info
 end
 
-rd_data = load_csv_data(stop_times)
-need_formatting = [] 
-rd_data.each do |attr|
-if attr[1][-1] != "_"
+# rd_data = load_csv_data(stop_times)
+# need_formatting = [] 
+# rd_data.each do |attr|
+# if attr[1][-1] != "_"
     
     # RouteDatum.create(stop_id: attr[0].to_i, stop_name: attr[2], route: attr[1]) 
-else 
-    need_formatting << attr
-end
+# else 
+#     need_formatting << attr
+# end
 # binding.pry 
-end
-binding.pry 
+# end
+# binding.pry 
 
 
 

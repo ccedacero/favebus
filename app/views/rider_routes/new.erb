@@ -1,7 +1,19 @@
 <%= form_for @rider_route do |f| %>
-<%= f.label :rider_id %>
-<%= f.collection_select(:rider_id, @riders, :id, :name) %>
-<%= f.label :bus_route_id %>
-<%= f.collection_select(:bus_route_id, @bus_routes, :id, :route) %>
-<%= f.submit "Create New Route" %>
+<div><%= f.label :rider_id %></div>
+<div><%= f.collection_select(:rider_id, @riders, :id, :name) %></div>
+<div><%= f.label :rider_route %></div>
+<div><%= f.collection_select(:stop_name, @route_data, :id, :stop_name) %></div>
+<div><%= f.label :bus_route%>
+<div><%= f.collection_select(:bus_route, @route_data, :id, :route) %></div>
+<div><%= f.label :stop_id%>
+<div><%= f.collection_select(:stop_id, @route_data, :id, :stop_id) %></div>
+<div><%= f.submit "Create New Route" %></div>
 <% end %>
+
+<%# need to write a method that takes the desired stop name 
+and narrows the filter to the bus routes in that stop 
+
+Create a new instance of rider_routes 
+Under rider routes page,  display the upcomin g
+buses for the bus  %>
+
