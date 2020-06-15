@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_06_14_230648) do
   create_table "route_data", force: :cascade do |t|
     t.integer "stop_id"
     t.string "stop_name"
+    t.string "route"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

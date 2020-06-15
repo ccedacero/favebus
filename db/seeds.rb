@@ -53,28 +53,69 @@ routes = "/Users/devtzi/Downloads/bronx_bus_stop_data/routes.txt"
 
 
 # ****I will need to match all the stop_ids to their stop_names and Buses 
-probably store all stop ids, and names and then iterate to see 
-if the stop times data id matches the current iteration stop id 
-    if it does, take the trip id. 
+# probably store all stop ids, and names and then iterate to see 
+# if the stop times data id matches the current iteration stop id 
+#     if it does, take the trip id. 
 stops = "/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt"
 # stop_id: 102375,stop_name: E 180 ST/SOUTHERN BL
 stop_times = "/Users/devtzi/Downloads/bronx_bus_stop_data/stop_times.txt"
 # trip_id":"GH_F0-Saturday-000000_BX41_1" "stop_id":"102793"
+def ft_bx(str)
+    i = str.index('BX')
+    if i != nil 
+    t = i + 4
+    route = str[i...t]
+   end
+   end
+   
 
 def load_csv_data(file_path)
-    i = 0
-  CSV.foreach(file_path, :headers => true) do |row|
-    binding.pry 
-    if i == 11 
-        break 
-    else 
-#   RouteDatum.create(stop_id: row["stop_id"].to_i, stop_name: row["stop_name"])
-   i+=1 
+    st_data = {}
+    CSV.foreach(file_path, :headers => true) do |row|    
+        
+        trip_id = ft_bx(row["trip_id"]) 
+        if trip_id != nil 
+        st_data[row["stop_id"]] = trip_id
+                # binding.pry 
+        end
+  end
+  stops = "/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt"
+  stop_info = []
+  st_data.each do |st|
+  CSV.foreach(stops, :headers => true) do |row|    
+    if st[0] == row["stop_id"]
+        arr = []
+        arr << st[0]
+        arr << st[1] 
+        arr <<row["stop_name"]
+        stop_info << arr 
     end
-  end     
- end
+  end 
+  end
+stop_info
+end
 
- load_csv_data(stop_times)
+rd_data = load_csv_data(stop_times)
+need_formatting = [] 
+rd_data.each do |attr|
+if attr[1][-1] != "_"
+    
+    # RouteDatum.create(stop_id: attr[0].to_i, stop_name: attr[2], route: attr[1]) 
+else 
+    need_formatting << attr
+end
+# binding.pry 
+end
+binding.pry 
+
+
+
+
+
+#   RouteDatum.create(stop_id: row["stop_id"].to_i, stop_name: row["stop_name"], route:row["trip_id"][22...-2]) 
+#   RouteDatum.create(stop_id:row["stop_id"],route:row["trip_id"][22...-2])
+
+
 # csv = File.read('/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt')
 # i = 0 
 # CSV.foreach("/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt", :headers => true) do |row|

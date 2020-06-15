@@ -3,7 +3,7 @@ class CreateRouteData < ActiveRecord::Migration[6.0]
     create_table :route_data do |t|
       t.integer :stop_id
       t.string :stop_name
-
+      t.string :route
       t.timestamps
     end
   end

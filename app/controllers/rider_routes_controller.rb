@@ -10,7 +10,7 @@ class RiderRoutesController < ApplicationController
     def new 
         @errors = flash[:errors]
         @riders = Rider.all 
-        @bus_routes = BusRoute.all 
+        @route_data = RouteDatum.all 
         @rider_route = RiderRoute.new
     end
 
