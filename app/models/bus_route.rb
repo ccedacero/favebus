@@ -11,24 +11,25 @@ class BusRoute < ApplicationRecord
         data = response.parsed_response
         # byebug
         bus_info = []
+        if data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"] != nil 
         data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |attr|
         #    byebug
            # p "NEXT BUS ARRIVING IN:"
-            route = attr["MonitoredVehicleJourney"]["LineRef"]
-            arrival_time = attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
-            bus_distance = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
-            destination_name = attr["MonitoredVehicleJourney"]["DestinationName"]
-            distance_by_stops = attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
-            last_update = attr["RecordedAtTime"]    
+            bus_info << attr["MonitoredVehicleJourney"]["LineRef"][9..-1]
+            bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"][9..-1]
+            bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
+            bus_info << attr["MonitoredVehicleJourney"]["DestinationName"]
+            bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
+            bus_info << attr["RecordedAtTime"]    
            # BusRoute.create(route: route, arrival_time: arrival_time, bus_distance:bus_distance, destination_name:destination_name, dispace_by_stops:distance_by_stops,last_update: last_update)    
            # p"NEXT BUS TIME COMING UP"
            # bus_stop = attr["MonitoredVehicleJourney"]["MonitoredCall"]["StopPointName"]
-           bus = BusRoute.find(self.id)
-           bus.update(route: route, arrival_time: arrival_time, bus_distance: bus_distance, destination_name: destination_name, dispace_by_stops: distance_by_stops, last_update: last_update)
-           break
+        #    bus = BusRoute.find(self.id)
+        #    bus.update(route: route, arrival_time: arrival_time, bus_distance: bus_distance, destination_name: destination_name, dispace_by_stops: distance_by_stops, last_update: last_update)
          end 
         #  byebug
-        #  bus_info
+         bus_info
+        end
        end
 
 

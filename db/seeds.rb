@@ -11,13 +11,7 @@ require "httparty"
 # BusRoute.dependent_destroy_all
 # Rider.destroy_all 
 
-def seed_bus_routes
-    RouteDatum.all.each do |dt|
-        BusRoute.create(route: dt["route"])
-    end
-    end
-    
-    seed_bus_routes() 
+
   
 def find_routes(stop_name)
     available_routes = []
@@ -49,7 +43,6 @@ def seed_names
 #  seed_names()
 
 #  Will need to match the bus routes created below to the stops that I load. 
-#  SEEDING BUS-ROUTES 
 # response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63")
 # data = response.parsed_response
 # binding.pry 
@@ -120,15 +113,26 @@ def load_csv_data(file_path)
     end
   end 
   end
-stop_info
+  p stop_info.count 
+stop_info.uniq
 end
 
-# rd_data = load_csv_data(stop_times)
+rd_data = load_csv_data(stop_times)
+unique_routes = rd_data.map {|bx| bx[1]}.uniq 
+
+#  SEEDING BUS-ROUTES 
+def seed_bus_routes(data)
+    data.each do |rt|
+        BusRoute.create(route: rt)
+    end
+    end
+
+    seed_bus_routes(unique_routes)
 # need_formatting = [] 
 # rd_data.each do |attr|
 # if attr[1][-1] != "_"
     
-    # RouteDatum.create(stop_id: attr[0].to_i, stop_name: attr[2], route: attr[1]) 
+#     RouteDatum.create(stop_id: attr[0].to_i, stop_name: attr[2], route: attr[1]) 
 # else 
 #     need_formatting << attr
 # end
