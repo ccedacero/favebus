@@ -3,9 +3,22 @@ require "faker"
 require 'csv'
 require "httparty"
 
+
+# 1. Best way to create new rider route instances 
+# 2. Where to put my methods 
+
 # Rider.dependent_destroy_all
 # BusRoute.dependent_destroy_all
 # Rider.destroy_all 
+
+def seed_bus_routes
+    RouteDatum.all.each do |dt|
+        BusRoute.create(route: dt["route"])
+    end
+    end
+    
+    seed_bus_routes() 
+  
 def find_routes(stop_name)
     available_routes = []
 RouteDatum.all.each do |dt|
@@ -18,11 +31,10 @@ available_routes.uniq!
 end
 
 # routes_available = find_routes(stop_name)
-stop_name = "WHITE PLAINS RD/E GUN HILL RD"
-stop_id = RouteDatum.find_by(stop_name:stop_name)
-id = stop_id.stop_id
+# stop_name = "WHITE PLAINS RD/E GUN HILL RD"
+# stop_id = RouteDatum.find_by(stop_name:stop_name)
+# id = stop_id.stop_id
 
-binding.pry 
 # SEEDING NAMES HERE 
 def seed_names
     10.times do

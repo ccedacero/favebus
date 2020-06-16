@@ -11,11 +11,18 @@ class RiderRoutesController < ApplicationController
         @errors = flash[:errors]
         @riders = Rider.all 
         @route_data = RouteDatum.all 
+        @bus_route = BusRoute.all 
         @rider_route = RiderRoute.new
     end
 
     def create
-        rider_route = RiderRoute.create(rider_route_params)
+        # route_id = RouteDatum.find(params)
+        stop_id = RouteDatum.find(params["rider_route"]["bus_route_id"]).stop_id.to_i
+        bus_route_id = params["rider_route"]["bus_route_id"]
+        stop_name = params["rider_route"]["stop_name"]
+        rider_id = params["rider_route"]["rider_id"]
+        rider_route = RiderRoute.create(stop_id: stop_id, stop_name: stop_name, rider_id: rider_id, bus_route_id: bus_route_id)
+        byebug
         redirect_to rider_route_path(rider_route)
     end
 
@@ -38,7 +45,7 @@ class RiderRoutesController < ApplicationController
     private 
 
     def rider_route_params(*args)
-        params.require(:rider_route).permit(:stop_id, :stop_name, :rider_id, :bus_route_id)
+        params.require(:rider_route).permit(*args)
     end
 
 end
