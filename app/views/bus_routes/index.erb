@@ -8,7 +8,7 @@
 <th>Bus Distance in stops</th>
 <th>Info Last Updated</th>
 </tr>
-<td><%= route.route %></td>
+<td><%= link_to route.route, bus_route_path(route) %></td>
 <td><%= route.arrival_time %></td>
 <td><%= route.bus_distance %></td>
 <td><%= route.destination_name %></td>

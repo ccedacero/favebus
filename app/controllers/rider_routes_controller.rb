@@ -22,7 +22,6 @@ class RiderRoutesController < ApplicationController
         stop_name = params["rider_route"]["stop_name"]
         rider_id = params["rider_route"]["rider_id"]
         rider_route = RiderRoute.create(stop_id: stop_id, stop_name: stop_name, rider_id: rider_id, bus_route_id: bus_route_id)
-        byebug
         redirect_to rider_route_path(rider_route)
     end
 

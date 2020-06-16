@@ -1,3 +1,14 @@
 <h1><%=@rider.name%>'s Page</h1>
+<p>Buses I'm tracking</p>
+<% @rider.bus_routes.each do |info| %>
+<div><%= info.route %></div>
+<%= info.arrival_time %>
+<%= info.bus_distance %>
+<%= info.destination_name %>
+<%= info.dispace_by_stops %>
+<% end %>
+
 <%= button_to "delete account", rider_path(@rider), method: :delete %>
 <%= link_to"Main Page", riders_path%>
+
+

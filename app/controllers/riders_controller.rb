@@ -1,3 +1,4 @@
+require "httparty"
 class RidersController < ApplicationController
     def index 
         @riders = Rider.all
@@ -38,5 +39,7 @@ class RidersController < ApplicationController
     def rider_params(*args)
         params.require(:rider).permit(:name)
     end
+
+    
 
 end
