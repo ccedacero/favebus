@@ -1,6 +1,5 @@
 <h1>Bus: <%= @bus_route%></h1>
 <%= dt = @bus_route.fetch_bus_status%>
-<% @byebug %>
 <div><%= @bus_route.route %></div>
 <div><%= @bus_route.arrival_time %></div>
 <div><%= @bus_route.bus_distance %></div>

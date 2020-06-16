@@ -5,6 +5,8 @@ class RiderRoutesController < ApplicationController
 
     def show 
         @rider_route = RiderRoute.find(params[:id])
+        bus_route= @rider_route.bus_route
+        @bus_arrival_data = bus_route.fetch_bus_status
     end
 
     def new 
@@ -17,11 +19,11 @@ class RiderRoutesController < ApplicationController
 
     def create
         # route_id = RouteDatum.find(params)
-        stop_id = RouteDatum.find(params["rider_route"]["bus_route_id"]).stop_id.to_i
-        bus_route_id = params["rider_route"]["bus_route_id"]
-        stop_name = params["rider_route"]["stop_name"]
-        rider_id = params["rider_route"]["rider_id"]
-        rider_route = RiderRoute.create(stop_id: stop_id, stop_name: stop_name, rider_id: rider_id, bus_route_id: bus_route_id)
+        # bus_route_id = params["rider_route"]["bus_route_id"]
+        stop_name = RouteDatum.find_by(stop_id:params["rider_route"]["stop_id"]).stop_name
+        params["rider_route"]["stop_name"] = stop_name
+        params["rider_route"]["stop_id"] = params["rider_route"]["stop_id"].to_i
+        rider_route = RiderRoute.create(rider_route_params)
         redirect_to rider_route_path(rider_route)
     end
 
@@ -43,8 +45,8 @@ class RiderRoutesController < ApplicationController
 
     private 
 
-    def rider_route_params(*args)
-        params.require(:rider_route).permit(*args)
+    def rider_route_params
+        params.require(:rider_route).permit(:stop_id, :stop_name,:rider_id, :bus_route_id)
     end
 
 end
