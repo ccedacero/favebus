@@ -3,7 +3,10 @@ class BusRoute < ApplicationRecord
     has_many :riders, through: :rider_routes
     has_many :route_datums
 
-
+    def format_str(str)
+        string = str.split("T")
+        string
+      end      
     def fetch_bus_status
         # byebug
        stop_id =  RouteDatum.find_by(route:self.route).stop_id
@@ -15,19 +18,20 @@ class BusRoute < ApplicationRecord
         data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |attr|
         #    byebug
            # p "NEXT BUS ARRIVING IN:"
+           if attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"] != nil
             bus_info << attr["MonitoredVehicleJourney"]["LineRef"][9..-1]
-            bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"][9..-1]
+            arrival = attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
+            arrival = format_str(arrival)[1][0..7]
+            bus_info << arrival
             bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
             bus_info << attr["MonitoredVehicleJourney"]["DestinationName"]
             bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
-            bus_info << attr["RecordedAtTime"]    
-           # BusRoute.create(route: route, arrival_time: arrival_time, bus_distance:bus_distance, destination_name:destination_name, dispace_by_stops:distance_by_stops,last_update: last_update)    
-           # p"NEXT BUS TIME COMING UP"
-           # bus_stop = attr["MonitoredVehicleJourney"]["MonitoredCall"]["StopPointName"]
-        #    bus = BusRoute.find(self.id)
-        #    bus.update(route: route, arrival_time: arrival_time, bus_distance: bus_distance, destination_name: destination_name, dispace_by_stops: distance_by_stops, last_update: last_update)
+    
+            last_update = attr["RecordedAtTime"]
+            last_update = format_str(attr["RecordedAtTime"])[1][0..7]
+            bus_info << last_update
          end 
-        #  byebug
+        end 
          bus_info
         end
        end

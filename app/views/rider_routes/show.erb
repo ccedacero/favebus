@@ -1,11 +1,11 @@
-<h2 style="text-align: center">Bus Arrival Information</h2>
+<h2 style="text-align: center">Bus Arrival Information: <%=@rider_route.stop_name%></h2>
 <div>
 <table style="text-align:center, border: 2px solid black; margin:0 auto; font-size:1.2em;">
 <th>Route</th>
-<th>Bus Arrival Time</th>
-<th>Bus Distance</th>
-<th>Bus Destination</th>
-<th>Bus Distance in stops</th>
+<th> Arrival Time</th>
+<th>Distance</th>
+<th>Destination</th>
+<th>Distance in stops</th>
 <th>Last Update</th>
 </tr>
 <% @bus_arrival_data.each%>
@@ -37,6 +37,14 @@
 </tr>
 <br>
 </table>
+<div>
+
+<%= button_to "delete route", rider_route_path(@rider_route), method: :delete %>
+<%= link_to "edit route", edit_rider_route_path(@rider_route)%>
+<br>
+<%= link_to "see other routes", rider_routes_path %>
+
 </div>
  <%# Need to limite responses to 6 as all data only shows for
  upcomign 6 buses  %>
+<%# WHITE PLAINS RD/E GUN HILL RD %>

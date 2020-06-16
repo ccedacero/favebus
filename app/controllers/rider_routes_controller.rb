@@ -28,19 +28,25 @@ class RiderRoutesController < ApplicationController
     end
 
     def edit 
+        @riders = Rider.all 
+        @bus_route = BusRoute.all 
+        @route_data = RouteDatum.all 
         @rider_route = RiderRoute.find(params[:id])
     end
 
     def update 
         rider_route = RiderRoute.find(params[:id])
+        stop_name = RouteDatum.find_by(stop_id:params["rider_route"]["stop_id"]).stop_name
+        params["rider_route"]["stop_name"] = stop_name
+        params["rider_route"]["stop_id"] = params["rider_route"]["stop_id"].to_i
         rider_route.update(rider_route_params)
-        redirect_to rider_route_path(rider_route_params)
+        redirect_to rider_route_path
     end
 
     def destroy 
         rider_route = RiderRoute.find(params[:id])
         rider_route.destroy()
-        redirect_to riders_route_path
+        redirect_to rider_routes_path
     end
 
     private 

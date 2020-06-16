@@ -1,6 +1,4 @@
+<h1>Check out Available Bus Route information below</h1>
 <% @rider_routes.each do |r| %>
-<div>Stop ID:<%= r.stop_id %> <div>
-<div>Stop Name:<%= r.stop_name %> <div>
+<div>Stop Name:<%= link_to r.stop_name, rider_route_path(r) %> <div>
 <% end %>
-
-<%# //add link here maybe  %>
