@@ -81,6 +81,7 @@ stops = "/Users/devtzi/Downloads/bronx_bus_stop_data/stops.txt"
 # stop_id: 102375,stop_name: E 180 ST/SOUTHERN BL
 stop_times = "/Users/devtzi/Downloads/bronx_bus_stop_data/stop_times.txt"
 # trip_id":"GH_F0-Saturday-000000_BX41_1" "stop_id":"102793"
+
 def ft_bx(str)
     i = str.index('BX')
     if i != nil 

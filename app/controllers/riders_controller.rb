@@ -20,10 +20,6 @@ class RidersController < ApplicationController
     def show 
         @rider = Rider.find(params[:id])
         bx_routes = @rider.bus_routes.map {|rt| rt.route}
-        # @stop_names = bx_routes.map {|bx| RouteDatum.all.find_by(route: bx).stop_name}
-
-        # @bus_arrival_data = @rider.bus_routes.map {|route| route.fetch_bus_status}.flatten
-        # byebug 
         @bus_arrival = @rider.rider_routes.map {|route| {
             name: route.stop_name,
             bus_arrival_data: route.bus_route.fetch_bus_status.flatten
