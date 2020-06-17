@@ -1,7 +1,0 @@
-<h1>Welcome back users</h1>
-<% @riders.each do |attr| %>
-<p><%=link_to attr.name, rider_path(attr.id)%></p>
-<% end %>
-<div>
-<%= link_to "create account", new_rider_path %>
-</div>

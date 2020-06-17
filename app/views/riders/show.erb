@@ -1,3 +1,9 @@
+<%# <style>
+body {
+    background-color: #e3f2fd;
+    color: #000;
+}
+</style> %>
 <h1><%=@rider.name%>'s Page</h1>
 <h2 style="text-align: center">Bus Arrival Information</h2>
 <div>
@@ -28,4 +34,4 @@
 <%= link_to"Main Page", riders_path%>
 
 
-<%= link_to 'Edit', edit_shark_path(@shark), :class => "btn btn-primary btn-sm" %> <%= link_to 'Back', sharks_path, :class => "btn btn-primary btn-sm" %>
+<%= link_to 'Edit', edit_rider_path(@rider), :class => "btn btn-primary btn-sm" %> <%= link_to 'Back', welcome_path, :class => "btn btn-primary btn-sm" %>

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   get 'home/index'
-  resources :riders, only: [:new, :create, :show, :edit, :delete]
+  # resources :riders, only: [:new, :create, :show, :edit, :delete]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'welcome', to: 'sessions#welcome'
   get 'authorized', to: 'sessions#page_requires_login'
-
+  resources :riders 
   resources :route_data
   resources :rider_routes
   resources :bus_routes
