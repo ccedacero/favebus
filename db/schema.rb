@@ -23,11 +23,6 @@ ActiveRecord::Schema.define(version: 2020_06_14_230648) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rider_route_data", force: :cascade do |t|
-    t.integer "stop_id"
-    t.string "stop_name"
-  end
-
   create_table "rider_routes", force: :cascade do |t|
     t.integer "stop_id"
     t.string "stop_name"
@@ -41,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_06_14_230648) do
 
   create_table "riders", force: :cascade do |t|
     t.string "name"
+    t.string "username"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
