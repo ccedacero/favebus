@@ -4,7 +4,7 @@ class RidersController < ApplicationController
     def index 
         @riders = Rider.all
     end
-    
+
     def new 
         @errors = flash[:errors]
         @rider = Rider.new
@@ -45,7 +45,7 @@ class RidersController < ApplicationController
     def destroy 
         rider = Rider.find(params[:id])
         rider.destroy()
-        redirect_to riders_path
+        redirect_to '/welcome'
     end
 
     private 

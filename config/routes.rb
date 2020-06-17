@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :riders, only: [:new, :create, :show]
+  resources :riders, only: [:new, :create, :show, :edit, :delete]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'welcome', to: 'sessions#welcome'

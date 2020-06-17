@@ -1,6 +1,11 @@
 <h1>Welcome</h1>
 <% if logged_in? %>
-   <h1>You to Favebus,<%= current_rider.username %></h1>
+   <h1>To Favebus, <%= current_rider.username %></h1>
    <h2>What would you like to do today? </h2>
-    
+    <ul><li><%=link_to "See My Upcoming Buses", rider_path(current_rider)%></li>
+    <li><%=link_to "Track Bus Stop", new_rider_route_path%></li>
+    <li><%=link_to "See Bus List",bus_routes_path%></li>
+    <li>    <%= button_to "Delete account", rider_path(current_rider), method: :delete %>
+    </li>
+     <ul>
 <%end%>
