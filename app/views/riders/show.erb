@@ -1,15 +1,19 @@
 <h1><%=@rider.name%>'s Page</h1>
-<h2 style="text-align: center">Bus Arrival Information</h2>
+
+<h2>Bus Arrival Information</h2>
 <div>
-<table style="text-align:center, border: 2px solid black; margin:0 auto; font-size:1.2em;">
-<th>Stop</th>
-<th>Route</th>
-<th> Arrival Time</th>
-<th>Distance</th>
-<th>Destination</th>
-<th>Distance in stops</th>
-<th>Last Update</th>
+<table class="table table-hover table-dark">
+  <thead>
+<th scope="col">My Stop</th>
+<th scope="col">Route</th>
+<th scope="col">ETA</th>
+<th scope="col">Distance</th>
+<th scope="col">Destination</th>
+<th scope="col">Stops Away</th>
+<th scope="col">Updated</th>
 </tr>
+</thead>
+<tbody>
 <% @bus_arrival.each do |bus_info|%>
 <tr>
 <td style="text-align:center"><%= bus_info[:name]%></td>
@@ -20,10 +24,12 @@
 <td style="text-align:center"><%= bus_info[:bus_arrival_data][4]%></td>
 <td style="text-align:center"><%= bus_info[:bus_arrival_data][5]%></td>
 </tr>
-<br>
-</table>
-<div>
 <% end %>
+<tbody>
+</table>
+
+<%= button_to "Get Latest Info", rider_path(@rider)%>
+
 <%= button_to "Delete account", rider_path(@rider), method: :delete %>
 
  
