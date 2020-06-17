@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   resources :riders, only: [:new, :create, :show, :edit, :delete]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
