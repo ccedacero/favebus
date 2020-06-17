@@ -1,6 +1,20 @@
 class RidersController < ApplicationController
+    skip_before_action :authorized, only: [:new, :create]
+    
     def index 
         @riders = Rider.all
+    end
+    
+    def new 
+        @errors = flash[:errors]
+        @rider = Rider.new
+    end
+
+    def create
+        @rider = Rider.create(rider_params)
+        session[:rider_id] = @rider.id 
+        redirect_to '/welcome'
+        # redirect_to rider_path(rider)
     end
 
     def show 
@@ -17,15 +31,6 @@ class RidersController < ApplicationController
         # byebug
     end
 
-    def new 
-        @errors = flash[:errors]
-        @rider = Rider.new
-    end
-
-    def create
-        rider = Rider.create(rider_params)
-        redirect_to rider_path(rider)
-    end
 
     def edit 
         @rider = Rider.find(params[:id])
@@ -45,8 +50,8 @@ class RidersController < ApplicationController
 
     private 
 
-    def rider_params(*args)
-        params.require(:rider).permit(:name)
+    def rider_params
+        params.require(:rider).permit(:name, :username, :password)
     end
         
     
