@@ -1,6 +1,11 @@
+<h1>Edit Account Details</h1>
 <%= form_for @rider do |f| %>
-<%= f.label :name%>
-<%= f.text_field :name %>
-<%= f.submit "Update Account" %>
+<%= f.label :name%><br>
+<%= f.text_field :name %><br>
+<%= f.label :username%><br>
+<%= f.text_field :username%><br>
+<%= f.label :password%><br>
+<%= f.password_field :password%><br>
+<%= f.submit "Update Account Details" %>
 <% end %>
 <%= link_to 'Show', @rider, :class => "btn btn-primary btn-sm" %> <%= link_to 'Back', riders_path, :class => "btn btn-primary btn-sm" %>

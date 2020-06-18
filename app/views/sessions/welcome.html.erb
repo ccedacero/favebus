@@ -25,10 +25,13 @@ a {
     <li><%=link_to "Track Bus Stop", new_rider_route_path, :class => 'list-group-item list-group-item-action'%></li>
     <li><%=link_to "Check Bus Stop Traffic", new_station_path, :class => 'list-group-item list-group-item-action'%></li>
     <li><%=link_to "Bus Tracking List", rider_routes_path, :class => 'list-group-item list-group-item-action'%></li>
+    <li><%=link_to "Edit Account", edit_rider_path(current_rider.id), :class => 'list-group-item list-group-item-action'%></li>
+    <li><%=link_to "Delete Account", rider_route_path(current_rider.id), method: :delete, :class => 'list-group-item list-group-item-action'%></li>
      </ul>
      </div>
 </div>
 <%end%>
+ 
 
     <%# <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> %>
 
