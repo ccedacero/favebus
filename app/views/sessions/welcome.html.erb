@@ -26,7 +26,7 @@ a {
     <li><%=link_to "Check Bus Stop Traffic", new_station_path, :class => 'list-group-item list-group-item-action'%></li>
     <li><%=link_to "Bus Tracking List", rider_routes_path, :class => 'list-group-item list-group-item-action'%></li>
     <li><%=link_to "Edit Account", edit_rider_path(current_rider.id), :class => 'list-group-item list-group-item-action'%></li>
-    <li><%=link_to "Delete Account", rider_route_path(current_rider.id), method: :delete, :class => 'list-group-item list-group-item-action'%></li>
+    <li><%=link_to "Delete Account", rider_path(current_rider.id), method: :delete, :class => 'list-group-item list-group-item-action'%></li>
      </ul>
      </div>
 </div>
@@ -37,6 +37,8 @@ a {
 
 
 <% if !logged_in? %>
-<%= button_to "Login", '/login', method: :get%>
-<%= button_to "Sign Up", '/riders/new',method: :get %>
+<div class=".text-center" style="margin-top: 30vh;">
+<%= button_to "Login", '/login', method: :get ,  :class => "btn btn-primary"%>
+<%= button_to "Sign Up", '/riders/new',method: :get, :class => "btn btn-primary" %>
+</div>
 <% end %>
