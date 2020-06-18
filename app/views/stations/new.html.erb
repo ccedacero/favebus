@@ -1,0 +1,6 @@
+<h1>Stations#new</h1>
+<%= form_for @bus_station do |f| %>
+<div><%= f.label :bus_stop %></div>
+<div><%= f.collection_select(:station_id, @bus_stops, :stop_id, :stop_name) %></div>
+<div><%= f.submit "See Upcoming Buses" %></div>
+<% end %>

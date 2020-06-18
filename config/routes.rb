@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'stations/new'
+  get 'stations/create'
   get 'home/index'
   # resources :riders, only: [:new, :create, :show, :edit, :delete]
   get 'login', to: 'sessions#new'
@@ -11,5 +13,6 @@ Rails.application.routes.draw do
   resources :route_data
   resources :rider_routes
   resources :bus_routes
+  resources :stations 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

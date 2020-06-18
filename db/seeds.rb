@@ -4,6 +4,48 @@ require 'csv'
 require "httparty"
 
 
+
+
+def fetch_bus_status(stop_id)
+  # byebug
+  response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=#{stop_id}")
+  data = response.parsed_response
+  byebug
+  bus_info = []
+  if data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"] != nil 
+  data["Siri"]["ServiceDelivery"]["StopMonitoringDelivery"]["MonitoredStopVisit"].each do |attr|
+  #    byebug
+     # p "NEXT BUS ARRIVING IN:"
+     if attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"] != nil
+      bus_info << attr["MonitoredVehicleJourney"]["LineRef"][9..-1]
+      arrival = attr["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"]
+      arrival = format_str(arrival)[1][0..7]
+      bus_info << arrival
+      bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["PresentableDistance"]
+      bus_info << attr["MonitoredVehicleJourney"]["DestinationName"]
+      bus_info << attr["MonitoredVehicleJourney"]["MonitoredCall"]["Extensions"]["Distances"]["StopsFromCall"]
+
+      last_update = attr["RecordedAtTime"]
+      last_update = format_str(attr["RecordedAtTime"])[1][0..7]
+      bus_info << last_update
+   end 
+  end 
+   bus_info
+  end
+ end
+
+ fetch_bus_status('100631')
+
+
+
+
+
+
+
+
+
+
+
 # 1. Best way to create new rider route instances 
 # 2. Where to put my methods 
 
@@ -118,8 +160,8 @@ def load_csv_data(file_path)
 stop_info.uniq
 end
 
-rd_data = load_csv_data(stop_times)
-unique_routes = rd_data.map {|bx| bx[1]}.uniq 
+# rd_data = load_csv_data(stop_times)
+# unique_routes = rd_data.map {|bx| bx[1]}.uniq 
 
 #  SEEDING BUS-ROUTES 
 def seed_bus_routes(data)
@@ -128,7 +170,7 @@ def seed_bus_routes(data)
     end
     end
 
-    seed_bus_routes(unique_routes)
+    # seed_bus_routes(unique_routes)
 # need_formatting = [] 
 # rd_data.each do |attr|
 # if attr[1][-1] != "_"

@@ -1,0 +1,28 @@
+<h2 style="text-align: center">Bus Stop Arrival Information</h2>
+<div>
+<table class="table table-hover table-dark">
+  <thead>
+<th scope="col">Route</th>
+<th scope="col">ETA</th>
+<th scope="col">Distance</th>
+<th scope="col">Destination</th>
+<th scope="col">Stops Away</th>
+<th scope="col">Updated</th>
+</tr>
+</thead>
+<tbody>
+<% i = -1 %>
+<% while i < @station_data.count %>
+<tr>
+<td style="text-align:center"><%= @station_data[i+1]%></td>
+<td style="text-align:center"><%= @station_data[i+2]%></td>
+<td style="text-align:center"><%= @station_data[i+3]%></td>
+<td style="text-align:center"><%= @station_data[i+4]%></td>
+<td style="text-align:center"><%= @station_data[i+5]%></td>
+<td style="text-align:center"><%= @station_data[i+6]%></td>
+</tr>
+<% i += 6 %>
+<% end %>
+<tbody>
+</table>
+</div
