@@ -20,11 +20,11 @@ class RidersController < ApplicationController
     def show 
         @rider = Rider.find(params[:id])
         bx_routes = @rider.bus_routes.map {|rt| rt.route}
+                # byebug
         @bus_arrival = @rider.rider_routes.map {|route| {
             name: route.stop_name,
             bus_arrival_data: route.bus_route.fetch_bus_status.flatten
         }}
-        # byebug
     end
 
 
