@@ -1,4 +1,7 @@
-<h2 style="text-align: center">Bus Arrival Information: <%=@rider_route.stop_name%></h2>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-5">Bus Arrival Information: <%=@rider_route.stop_name%></h1>
 <div>
 <table style="text-align:center, border: 2px solid black; margin:0 auto; font-size:1.2em;">
 <th>Route</th>
@@ -6,7 +9,7 @@
 <th>Distance</th>
 <th>Destination</th>
 <th>Distance in stops</th>
-<th>Last Update</th>
+<th>Updated</th>
 </tr>
 <% @bus_arrival_data.each%>
 <tr>
@@ -39,9 +42,12 @@
 </table>
 <div>
 
+
+<%= link_to "edit route", edit_rider_route_path(@rider_route)%><br>
+<%= link_to "Back", rider_routes_path %><br>
 <%= button_to "delete route", rider_route_path(@rider_route), method: :delete %>
-<%= button_to "edit route", edit_rider_route_path(@rider_route)%>
-<%= link_to "Back", rider_routes_path %>
+</div>
+</div>
 </div>
  <%# Need to limite responses to 6 as all data only shows for
  upcomign 6 buses  %>
