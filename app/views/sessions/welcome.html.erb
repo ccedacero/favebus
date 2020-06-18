@@ -15,8 +15,8 @@ a {
 }
 
 </style>
-<div class="jumbotron">
 <% if logged_in? %>
+<div class="jumbotron">
   <h1 class="display-4">Welcome!</h1>
   <h2 class="display-6">To Favebus, <%= current_rider.username %></h1>
    <h2>What would you like to do today? </h2>
@@ -24,11 +24,12 @@ a {
      <div class="list-group">
     <ul><li><%=link_to "See My Upcoming Buses", rider_path(current_rider), :class => 'list-group-item list-group-item-action'%></li>
     <li><%=link_to "Track Bus Stop", new_rider_route_path, :class => 'list-group-item list-group-item-action'%></li>
-    <li><%=link_to "See Bus List", bus_routes_path, :class => 'list-group-item list-group-item-action'%></li>
+    <li><%=link_to "Check Bus Stop", new_station_path, :class => 'list-group-item list-group-item-action'%></li>
      </ul>
+     </div>
+</div>
 <%end%>
-</div>
-</div>
+
     <%# <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> %>
 
 
