@@ -11,7 +11,7 @@ class RiderRoutesController < ApplicationController
 
     def new 
         @errors = flash[:errors]
-        @riders = Rider.all 
+        # @riders = Rider.all 
         @bus_route = BusRoute.all 
         @route_data = RouteDatum.all 
         @rider_route = RiderRoute.new
@@ -23,6 +23,7 @@ class RiderRoutesController < ApplicationController
         stop_name = RouteDatum.find_by(stop_id:params["rider_route"]["stop_id"]).stop_name
         params["rider_route"]["stop_name"] = stop_name
         params["rider_route"]["stop_id"] = params["rider_route"]["stop_id"].to_i
+        params["rider_route"]["rider_id"] = session[:rider_id]
         rider_route = RiderRoute.create(rider_route_params)
         redirect_to rider_route_path(rider_route)
     end

@@ -1,4 +1,17 @@
-<h1>Check out Available Bus Route information below</h1>
+<%# <style>
+body {
+    background-color: #fff;
+    color: #000;
+}
+
+</style> %>
+<h1> Route information below</h1>
+
 <% @rider_routes.each do |r| %>
+ <%= r.bus_route.route %> 
 <div>Stop Name:<%= link_to r.stop_name, rider_route_path(r) %> <div>
 <% end %>
+
+</div>
+
+

@@ -1,0 +1,5 @@
+<%= form_for @bus_stop do |f| %>
+<div><%= f.label :stop%>
+<div><%= f.collection_select(:stop_id, @stop_data, :stop_id, :stop_name) %></div>
+<div><%= f.submit "See Bus Stop Data" %></div>
+<% end %>

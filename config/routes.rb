@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'welcome', to: 'sessions#welcome'
   get 'authorized', to: 'sessions#page_requires_login'
   get 'logout' , to: 'sessions#logout'
+  get 'station_information', to: 'route_data#station_information'
   resources :riders 
   resources :route_data
   resources :rider_routes

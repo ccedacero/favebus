@@ -1,21 +1,5 @@
-<%@bus_routes.each do |route| %>
-<table style="width:100% ; text-align:center;">
-<tr style="border: 2px solid white;">
-<th>Route</th>
-<th>Bus Arrival Time</th>
-<th>Bus Distance</th>
-<th>Bus Destination</th>
-<th>Bus Distance in stops</th>
-<th>Info Last Updated</th>
-</tr>
-<td><%= link_to route.route, bus_route_path(route) %></td>
-<td><%= route.arrival_time %></td>
-<td><%= route.bus_distance %></td>
-<td><%= route.destination_name %></td>
-<td><%= route.dispace_by_stops %></td>
-<td><%= route.last_update %></td>
-<% end  %>
-
- <%# Need to limite responses to 6 as all data only shows for
- upcomign 6 buses  %>
-
+<%= form_for @bus_route do |f| %>
+<div><%= f.label :bus_stop %></div>
+<div><%= f.collection_select(:route, @bus_stops, :stop_id, :stop_name) %></div>
+<div><%= f.submit "See Upcoming Buses" %></div>
+<% end %>
