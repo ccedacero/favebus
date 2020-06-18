@@ -1,3 +1,6 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Track a New Bus</h1>
 <%= form_for @rider_route do |f| %>
 <div><%= f.label :bus_route %></div>
 <div><%= f.collection_select(:bus_route_id, @bus_route, :id, :route) %></div>
@@ -6,3 +9,5 @@
 <div><%= f.collection_select(:stop_id, @route_data, :stop_id, :stop_name) %></div>
 <div><%= f.submit "Start Tracking Bus" %></div>
 <% end %>
+  </div>
+</div>

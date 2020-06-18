@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'stations/new'
   get 'stations/create'
+  # root 'home/index'
   get 'home/index'
   # resources :riders, only: [:new, :create, :show, :edit, :delete]
   get 'login', to: 'sessions#new'

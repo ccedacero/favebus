@@ -4,11 +4,13 @@
 
 body {
 	// background: #eee !important;	
-    color: #fff;
+    color: #fff !important;
+	background: lightblue url("https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat fixed center !important; 
+
 }
 
 .wrapper {	
-	margin-top: 27vh;
+	margin-top: 20vh;
   margin-bottom: 50vh;
 
 }

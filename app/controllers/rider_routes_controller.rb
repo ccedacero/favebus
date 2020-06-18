@@ -6,6 +6,7 @@ class RiderRoutesController < ApplicationController
     def show 
         @rider_route = RiderRoute.find(params[:id])
         bus_route= @rider_route.bus_route
+        # byebug
         @bus_arrival_data = bus_route.fetch_bus_status
     end
 

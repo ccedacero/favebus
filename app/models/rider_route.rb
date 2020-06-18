@@ -3,7 +3,7 @@ class RiderRoute < ApplicationRecord
   belongs_to :bus_route
 
   def fetch_bus_status
-    # byebug
+   #  byebug
    stop_id =  RouteDatum.find_by(route:self.route).stop_id
     response = HTTParty.get("http://bustime.mta.info/api/siri/stop-monitoring.xml?key=31df2baf-01e5-4a65-80a6-82c960de5740&OperatorRef=MTA&MonitoringRef=#{stop_id}&LineRef=MTA%20NYCT_#{self.route}")
     data = response.parsed_response
