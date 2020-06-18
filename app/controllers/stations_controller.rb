@@ -7,7 +7,7 @@ end
 
 def create
     # station = Station.create(station_id: params[:station][:station_id])
-    Station.create(station_route_params)
+    station = Station.create(station_route_params)
     redirect_to station_path(station)
 end
 
