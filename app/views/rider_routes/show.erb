@@ -40,10 +40,8 @@
 <div>
 
 <%= button_to "delete route", rider_route_path(@rider_route), method: :delete %>
-<%= link_to "edit route", edit_rider_route_path(@rider_route)%>
-<br>
-<%= link_to "see other routes", rider_routes_path %>
-
+<%= button_to "edit route", edit_rider_route_path(@rider_route)%>
+<%= link_to "Back", rider_routes_path %>
 </div>
  <%# Need to limite responses to 6 as all data only shows for
  upcomign 6 buses  %>

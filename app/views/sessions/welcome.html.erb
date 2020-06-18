@@ -13,7 +13,6 @@ ul {
 a {
    line-height: 2em;
 }
-
 </style>
 <% if logged_in? %>
 <div class="jumbotron">
@@ -24,7 +23,8 @@ a {
      <div class="list-group">
     <ul><li><%=link_to "See My Upcoming Buses", rider_path(current_rider), :class => 'list-group-item list-group-item-action'%></li>
     <li><%=link_to "Track Bus Stop", new_rider_route_path, :class => 'list-group-item list-group-item-action'%></li>
-    <li><%=link_to "Check Bus Stop", new_station_path, :class => 'list-group-item list-group-item-action'%></li>
+    <li><%=link_to "Check Bus Stop Traffic", new_station_path, :class => 'list-group-item list-group-item-action'%></li>
+    <li><%=link_to "Bus Tracking List", rider_routes_path, :class => 'list-group-item list-group-item-action'%></li>
      </ul>
      </div>
 </div>
