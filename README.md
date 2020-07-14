@@ -1,24 +1,3 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
+#MVP app that allows you to track bus routes and bus stops in NYC. This is an initial personal project. It current only allows a user to create an account and start tracking buses or stops, but tracking availability is limited. 
 * ...
