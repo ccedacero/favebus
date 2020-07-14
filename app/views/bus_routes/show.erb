@@ -1,3 +1,6 @@
-<%= @bus_route.each do |attr|  %>
-<div><%= attr %></div>
+<h1>Bus: <% @bus_route.route%></h1>
+<%@bus_route.fetch_bus_status.each do |bx| %>
+<div><%= bx %></div>
 <%end %>
+
+<%= link_to "Go back to Bus Routes", bus_routes_path %>

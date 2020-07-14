@@ -1,0 +1,17 @@
+<%# <nav class="navbar navbar-dark navbar-static-top navbar-expand-md"> %>
+<nav class="navbar navbar-light navbar-static-top navbar-expand-md"  style="background-color: #e3f2fd;">
+    <div class="container">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>
+        </button> <%= link_to "Favebus", '/home/index', class: 'navbar-brand' %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav mr-auto">
+            <li class='nav-item'><%= link_to 'Home',  welcome_path, class: 'nav-link' %></li>
+            <li class='nav-item'><%= link_to 'Start Tracking', new_rider_route_path, class: 'nav-link' %></li>  
+            <li class='nav-item'><%= link_to 'Check Bus Stop', new_station_path, class: 'nav-link' %></li>  
+            <li class='nav-item'><%= link_to 'Logout',logout_path, class: 'nav-link'  %></li>  
+            </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

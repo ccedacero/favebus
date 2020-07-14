@@ -1,0 +1,54 @@
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-5">Bus Arrival Information: <%=@rider_route.stop_name%></h1>
+<div>
+<table style="text-align:center, border: 2px solid black; margin:0 auto; font-size:1.2em;">
+<th>Route</th>
+<th> Arrival Time</th>
+<th>Distance</th>
+<th>Destination</th>
+<th>Distance in stops</th>
+<th>Updated</th>
+</tr>
+<% @bus_arrival_data.each%>
+<tr>
+<td style="text-align:center"><%= @bus_arrival_data[0]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[1]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[2]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[3]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[4]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[5]%></td>
+</tr>
+<br>
+<tr>
+<td style="text-align:center"><%= @bus_arrival_data[6]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[7]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[8]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[9]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[10]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[11]%></td>
+</tr>
+<br>
+<tr>
+<td style="text-align:center"><%= @bus_arrival_data[12]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[13]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[14]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[15]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[16]%></td>
+<td style="text-align:center"><%= @bus_arrival_data[17]%></td>
+</tr>
+<br>
+</table>
+<div>
+
+
+<%= link_to "edit route", edit_rider_route_path(@rider_route)%><br>
+<%= link_to "Back", rider_routes_path %><br>
+<%= button_to "delete route", rider_route_path(@rider_route), method: :delete %>
+</div>
+</div>
+</div>
+ <%# Need to limite responses to 6 as all data only shows for
+ upcomign 6 buses  %>
+<%# WHITE PLAINS RD/E GUN HILL RD %>

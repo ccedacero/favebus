@@ -1,0 +1,20 @@
+<style>
+body {
+    background: lightblue url("https://images.pexels.com/photos/385998/pexels-photo-385998.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat fixed center !important; 
+}
+
+h2 {
+   padding-top: .5em;
+}
+</style>
+<h2 class="display-4">Please login</h2>       
+<div class="wrapper">
+   <%= form_tag('/login', class: "form-signin") do %>
+   <%= label_tag :username%>
+   <%= text_field_tag :username, placeholder="username"%>
+   <%= label_tag :password%>
+   <%= password_field_tag :password, placeholder="password"%>
+   <%= submit_tag "Login", :class => "btn btn-primary"%>
+<%end%>
+</div>
+

@@ -1,0 +1,5 @@
+class RouteDataController < ApplicationController
+
+   
+
+end

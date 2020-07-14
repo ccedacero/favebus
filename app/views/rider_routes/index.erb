@@ -1,0 +1,28 @@
+
+
+ <style>
+td > a {
+    color: #008080 !important;	
+}
+</style>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Buses I'm tracking</h1>
+<p class="lead">Click a stop names to see more details and stop tracking</p>
+<table class="table table-hover table-dark">
+  <thead>
+<th scope="col">Bus Route</th>
+<th scope="col">Bus Stop</th>
+</tr>
+</thead>
+<tbody>
+<% @rider_routes.each do |bus_info|%>
+<tr>
+<td style="text-align:center"><%= bus_info.bus_route.route%></td>
+<td style="text-align:center;"><%=link_to bus_info.stop_name, rider_route_path(bus_info) %></td>
+</tr>
+<% end %>
+<tbody>
+</table>
+</div>
+</div>
