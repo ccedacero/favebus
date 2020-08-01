@@ -1,6 +1,9 @@
 # FaveBus
 
 ![FaveBus App](https://i.imgur.com/KSZ8apo.png)
+Functionality: The app needs an MTA key to fetch the data. For security reasons, this key has not been included. If you'd like to see App functionality, please refer to this video:  
+https://www.youtube.com/watch?v=hNDIfZTDAq8
+
 When I was living in Washington, DC I started using a bus tracking app to make sure I knew when the bus was coming so that I could get to work on time. That app was free to use and was simple, but I used it everyday. This is why I thought It would be a great idea to explore how transit aps work and build my own bus tracking app. 
 
 FaveBus uses the NY Metropolitan Transit Authority(MTA) Bus API to fetch realtime bus data to allow users to track buses and bus stations. 
@@ -19,14 +22,8 @@ FaveBus uses the NY Metropolitan Transit Authority(MTA) Bus API to fetch realtim
 - gem httparty
 - gem faker
 - gem bcrypt
-##### Note: 
-
-Functionality: The app needs an MTA key to fetch the data. For security reasons, this key has not been included. If you'd like to see App functionality, please refer to this video:  
-
-https://www.youtube.com/watch?v=hNDIfZTDAq8
-
-Other:   
-This is the first version of the app and due to BootCamp time contraints, the current version includes all features above, but I limited the number of buses and stations to track to a minimum because my local server woudl slow down when rendering all Bus Stops in NYC. This version will be replaced by a version built using React in August. Stay tunned for the release. 
+##### Project status :
+This is the first version of the app and due to BootCamp time contraints, the current version includes all features above, but I limited the number of buses and stations to track to a minimum because my local server would slow down when rendering all Bus Stops in NYC. This version will be replaced by a version built using React in August. Stay tunned for the release. 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
