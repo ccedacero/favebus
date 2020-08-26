@@ -1,7 +1,7 @@
 # Welcome to FaveBus
 
 ![FaveBus App](https://i.imgur.com/KSZ8apo.png)
-When I was living in Washington, DC I started using a bus tracking app to make sure I knew when the bus was coming so that I could get to work on time. That app was free to use and was simple, but I used it everyday. This is why I thought It would be a great idea to explore how transit aps work and build my own bus tracking app. 
+When I was living in Washington, DC I started using a bus tracking app to make sure I knew when the bus was coming so that I could get to work on time. That app was free to use and was simple, but I used it everyday. This is why I thought It would be a great idea to explore how transit apps work and build my own bus tracking app. 
 
 FaveBus uses the NY Metropolitan Transit Authority(MTA) Bus API to fetch realtime bus data to allow users to track buses and bus stations. 
 
