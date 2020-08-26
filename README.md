@@ -26,7 +26,7 @@ https://www.youtube.com/watch?v=hNDIfZTDAq8
 
 
 ## Project status
-This is the first version of the app and due to BootCamp time contraints, the current version includes all features above, but I limited the number of buses and stations to track to a minimum because my local server would slow down when rendering all Bus Stops in NYC. This version will be replaced by a version built using React in August. Stay tunned for the release. 
+This is the first version of the app and due to BootCamp time contraints, the current version includes all features above, but I limited the number of buses and stations to track to a minimum because my local server would slow down when rendering all Bus Stops in NYC. This version will be replaced by a version built using React in September. Stay tunned for the release. 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
